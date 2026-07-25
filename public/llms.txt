@@ -1,0 +1,20 @@
+# Durlabh Daryani — AI Product Manager
+
+> Portfolio of Durlabh Daryani, an AI Product Manager based in Jaipur, India. Showcases shipped AI-first products, case studies, product-thinking essays, frameworks, and an AI lab.
+
+## Pages
+
+- [Home](/): Hero, about, featured products, case studies, experience, frameworks, AI lab, education, and contact.
+- [Projects](/projects): Full index of shipped products, prototypes, and case studies.
+- [Product Thinking](/thinking): Essays on product management, AI product development, discovery, growth, and analytics.
+- [Thoughts](/thoughts): Archive of LinkedIn posts and short-form product thinking.
+
+## Essays
+
+- [How I build MVPs in 6 weeks](/thinking/mvp-in-6-weeks): A repeatable 6-week loop for going from problem to validated product.
+- [AI Product Development in 2025](/thinking/ai-product-development-2025): Evals, prompts-as-spec, and human-in-the-loop.
+- [Customer discovery without a research team](/thinking/customer-discovery-solo): Solo PM discovery playbook.
+- [Choosing a North Star metric](/thinking/north-star-metric): Leading indicators of retained value.
+- [Prompt engineering as product design](/thinking/prompts-as-product-design): Treating the system prompt as UX.
+- [Retention loops that actually compound](/thinking/retention-loops): Designing self-reinforcing product loops.
+- [Windsurf vs Cursor: an AI PM's take](/thinking/windsurf-vs-cursor): Comparing the two leading AI-native IDEs for product teams.

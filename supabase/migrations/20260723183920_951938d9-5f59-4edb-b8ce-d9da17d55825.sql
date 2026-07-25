@@ -1,0 +1,1 @@
+GRANT INSERT, UPDATE ON public.portfolio_content TO sandbox_exec;
