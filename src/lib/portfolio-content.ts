@@ -163,14 +163,16 @@ export async function fetchPortfolioSection<K extends PortfolioSectionKey>(
 export const portfolioContentQueryOptions = queryOptions({
   queryKey: ["portfolio_content", "all"],
   queryFn: fetchAllPortfolioContent,
-  staleTime: 1000 * 60, // 1 min
+  staleTime: 0,
+  refetchOnWindowFocus: true,
 });
 
 export function sectionQueryOptions<K extends PortfolioSectionKey>(section: K) {
   return queryOptions({
     queryKey: ["portfolio_content", section] as const,
     queryFn: () => fetchPortfolioSection(section),
-    staleTime: 1000 * 60,
+    staleTime: 0,
+    refetchOnWindowFocus: true,
   });
 }
 
