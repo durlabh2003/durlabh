@@ -11,14 +11,24 @@ function formatDate(iso: string) {
   });
 }
 
+function processEmbedHtml(html: string) {
+  if (!html) return "";
+  // Ensure iframe dynamically fills 100% width of the card container
+  let updated = html.replace(/width="[^"]*"/gi, 'width="100%"');
+  // Set default height for responsiveness
+  updated = updated.replace(/height="[^"]*"/gi, 'height="640"');
+  return updated;
+}
+
 export function PostCard({ post }: { post: any }) {
-  // If full embed HTML is provided, render the interactive iframe
+  // If full embed HTML is provided, render responsive iframe inside dark panel
   if (post.embedCode) {
     return (
-      <article className="glass-panel flex flex-col items-center justify-center overflow-hidden rounded-xl p-3 shadow-lg transition-transform hover:-translate-y-1">
+      <article className="glass-panel group flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/80 bg-surface/80 p-2.5 shadow-2xl transition-all duration-300 hover:border-brand/40 hover:shadow-brand/10 hover:-translate-y-1">
         <div
-          className="w-full flex justify-center overflow-auto max-h-[650px]"
-          dangerouslySetInnerHTML={{ __html: post.embedCode }}
+          className="w-full flex justify-center overflow-auto rounded-xl bg-[#0f0f0f]"
+          style={{ minHeight: "600px", width: "100%" }}
+          dangerouslySetInnerHTML={{ __html: processEmbedHtml(post.embedCode) }}
         />
       </article>
     );
@@ -27,15 +37,16 @@ export function PostCard({ post }: { post: any }) {
   // If embedUrl iframe link is provided
   if (post.embedUrl) {
     return (
-      <article className="glass-panel flex flex-col items-center justify-center overflow-hidden rounded-xl p-3 shadow-lg transition-transform hover:-translate-y-1">
+      <article className="glass-panel group flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/80 bg-surface/80 p-2.5 shadow-2xl transition-all duration-300 hover:border-brand/40 hover:shadow-brand/10 hover:-translate-y-1">
         <iframe
           src={post.embedUrl}
-          height="634"
+          height="640"
           width="100%"
           frameBorder="0"
           allowFullScreen
           title={post.title || "LinkedIn post"}
-          className="rounded-lg w-full"
+          className="rounded-xl w-full"
+          style={{ minHeight: "600px" }}
         />
       </article>
     );
@@ -43,13 +54,13 @@ export function PostCard({ post }: { post: any }) {
 
   // Fallback to card UI
   return (
-    <article className="glass-panel group flex flex-col overflow-hidden rounded-xl transition-transform hover:-translate-y-1">
+    <article className="glass-panel group flex flex-col overflow-hidden rounded-2xl transition-all duration-300 hover:border-brand/40 hover:-translate-y-1">
       {post.cover && (
         <a
           href={post.url || post.postUrl || "#"}
           target="_blank"
           rel="noreferrer"
-          aria-label={`Read LinkedIn post: ${(post.excerpt || post.title || "").slice(0, 80)}`}
+          aria-label={`Read post: ${(post.excerpt || post.title || "").slice(0, 80)}`}
           className="block aspect-[16/9] overflow-hidden border-b border-border"
         >
           <img
@@ -63,7 +74,7 @@ export function PostCard({ post }: { post: any }) {
 
       <div className="flex flex-1 flex-col gap-4 p-5">
         <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-muted">
-          <span className="text-brand">#{post.tag || "LinkedIn"}</span>
+          <span className="text-brand">#{post.tag || "Thoughts"}</span>
           {post.date && (
             <time dateTime={post.date} className="tabular-nums">
               {formatDate(post.date)}
@@ -80,7 +91,7 @@ export function PostCard({ post }: { post: any }) {
             rel="noreferrer"
             className="text-brand hover:underline"
           >
-            Read on LinkedIn →
+            Read Post →
           </a>
           <span className="text-muted">@durlabhdaryani</span>
         </div>

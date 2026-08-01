@@ -6,7 +6,7 @@ import { PostCard } from "./PostCard";
 export function LinkedInPosts() {
   const linkedinPosts = useSection("linkedinPosts");
   const latest = [...linkedinPosts]
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .sort((a, b) => ((a.date || '') < (b.date || '') ? 1 : -1))
     .slice(0, 3);
 
   return (
@@ -14,19 +14,12 @@ export function LinkedInPosts() {
       <div className="mx-auto max-w-7xl px-6 py-24">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
           <div>
-            <div className="mb-3 text-[11px] font-medium uppercase tracking-widest text-brand">
-              From LinkedIn
+            <div className="mb-2 text-[11px] font-medium uppercase tracking-widest text-brand">
+              Writing & Thoughts
             </div>
             <h2 className="font-display text-3xl font-medium tracking-tight md:text-4xl">
-              Latest Posts
+              Thoughts
             </h2>
-            <p className="mt-2 text-muted">
-              Latest three posts — newest first. Full archive on{" "}
-              <Link to="/thoughts" className="text-brand hover:underline">
-                /thoughts
-              </Link>
-              .
-            </p>
           </div>
           <Link
             to="/thoughts"
@@ -36,8 +29,8 @@ export function LinkedInPosts() {
           </Link>
         </div>
         <div className="grid gap-6 md:grid-cols-3">
-          {latest.map((p, i) => (
-            <Reveal key={p.id} delay={i * 0.05}>
+          {latest.map((p: any, i: number) => (
+            <Reveal key={p.id || i} delay={i * 0.05}>
               <PostCard post={p} />
             </Reveal>
           ))}
