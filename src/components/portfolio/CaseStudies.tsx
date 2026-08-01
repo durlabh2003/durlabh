@@ -19,6 +19,9 @@ export function CaseStudies() {
       <div className="mx-auto max-w-7xl px-6 py-24">
         <div className="mb-16 flex items-end justify-between gap-6 flex-wrap">
           <div>
+            <div className="mb-2 text-[11px] font-medium uppercase tracking-widest text-brand">
+              Deep Dives & Case Studies
+            </div>
             <h2 className="font-display text-3xl font-medium tracking-tight md:text-4xl">
               Case Studies
             </h2>
@@ -32,10 +35,10 @@ export function CaseStudies() {
         </div>
 
         <div className="border border-border rounded-2xl overflow-hidden divide-y divide-border">
-          {caseStudies.map((c, i) => {
+          {caseStudies.map((c: any, i: number) => {
             const isOpen = open === c.slug;
             return (
-              <Reveal key={c.slug} delay={i * 0.03}>
+              <Reveal key={c.slug || i} delay={i * 0.03}>
                 <button
                   onClick={() => setOpen(isOpen ? null : c.slug)}
                   className="w-full text-left px-6 md:px-8 py-6 flex items-center justify-between gap-6 hover:bg-muted/5 transition-colors focus-visible:outline-2 focus-visible:outline-brand"
@@ -81,44 +84,73 @@ export function CaseStudies() {
                       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 md:px-8 pb-8 pt-2 grid gap-8 md:grid-cols-12">
-                        <div className="md:col-span-8 grid gap-6">
-                          {rowKeys.map((r) => (
-                            <div key={r.key}>
-                              <div className="text-[10px] font-mono uppercase tracking-widest text-muted mb-1.5">
-                                {r.label}
+                      <div className="px-6 md:px-8 pb-8 pt-2">
+                        {/* Notion Embed Document Render */}
+                        {c.notionEmbed ? (
+                          <div className="space-y-6">
+                            <div
+                              className="w-full overflow-hidden rounded-xl border border-border bg-elevated/40 shadow-xl min-h-[500px]"
+                              dangerouslySetInnerHTML={{ __html: c.notionEmbed }}
+                            />
+                            {c.lessons && (
+                              <div className="rounded-xl border border-border p-4 bg-muted/5">
+                                <div className="text-[10px] font-mono uppercase tracking-widest text-muted mb-1">
+                                  Key Learnings & Takeaways
+                                </div>
+                                <p className="text-sm leading-relaxed text-ink/80 italic">
+                                  {c.lessons}
+                                </p>
                               </div>
-                              <p className="text-sm md:text-[15px] leading-relaxed text-ink/80">
-                                {c[r.key]}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                        <aside className="md:col-span-4 space-y-6">
-                          <div>
-                            <div className="text-[10px] font-mono uppercase tracking-widest text-muted mb-2">
-                              Metrics
-                            </div>
-                            <ul className="space-y-2">
-                              {c.metrics.map((m) => (
-                                <li
-                                  key={m}
-                                  className="text-sm border-l-2 border-brand pl-3"
-                                >
-                                  {m}
-                                </li>
+                            )}
+                          </div>
+                        ) : (
+                          /* Standard Text Layout Fallback */
+                          <div className="grid gap-8 md:grid-cols-12">
+                            <div className="md:col-span-8 grid gap-6">
+                              {rowKeys.map((r) => (
+                                c[r.key] ? (
+                                  <div key={r.key}>
+                                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted mb-1.5">
+                                      {r.label}
+                                    </div>
+                                    <p className="text-sm md:text-[15px] leading-relaxed text-ink/80">
+                                      {c[r.key]}
+                                    </p>
+                                  </div>
+                                ) : null
                               ))}
-                            </ul>
-                          </div>
-                          <div>
-                            <div className="text-[10px] font-mono uppercase tracking-widest text-muted mb-2">
-                              Lessons
                             </div>
-                            <p className="text-sm leading-relaxed text-ink/70 italic">
-                              {c.lessons}
-                            </p>
+                            <aside className="md:col-span-4 space-y-6">
+                              {c.metrics && c.metrics.length > 0 && (
+                                <div>
+                                  <div className="text-[10px] font-mono uppercase tracking-widest text-muted mb-2">
+                                    Metrics
+                                  </div>
+                                  <ul className="space-y-2">
+                                    {c.metrics.map((m: string) => (
+                                      <li
+                                        key={m}
+                                        className="text-sm border-l-2 border-brand pl-3"
+                                      >
+                                        {m}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+                              {c.lessons && (
+                                <div>
+                                  <div className="text-[10px] font-mono uppercase tracking-widest text-muted mb-2">
+                                    Lessons
+                                  </div>
+                                  <p className="text-sm leading-relaxed text-ink/70 italic">
+                                    {c.lessons}
+                                  </p>
+                                </div>
+                              )}
+                            </aside>
                           </div>
-                        </aside>
+                        )}
                       </div>
                     </motion.div>
                   )}
