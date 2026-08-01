@@ -15,19 +15,22 @@ function processEmbedHtml(html: string) {
   if (!html) return "";
   // Ensure iframe dynamically fills 100% width of the card container
   let updated = html.replace(/width="[^"]*"/gi, 'width="100%"');
-  // Set default height for responsiveness
-  updated = updated.replace(/height="[^"]*"/gi, 'height="640"');
+  // Fit height exactly to the post content (510px) to prevent empty bottom gap
+  updated = updated.replace(/height="[^"]*"/gi, 'height="510"');
   return updated;
 }
 
 export function PostCard({ post }: { post: any }) {
-  // If full embed HTML is provided, render responsive iframe inside dark panel
+  // If full embed HTML is provided, render responsive dark-mode iframe
   if (post.embedCode) {
     return (
-      <article className="glass-panel group flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/80 bg-surface/80 p-2.5 shadow-2xl transition-all duration-300 hover:border-brand/40 hover:shadow-brand/10 hover:-translate-y-1">
+      <article className="glass-panel group flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/80 bg-elevated/40 p-2 shadow-2xl transition-all duration-300 hover:border-brand/40 hover:shadow-brand/10 hover:-translate-y-1">
         <div
-          className="w-full flex justify-center overflow-auto rounded-xl bg-[#0f0f0f]"
-          style={{ minHeight: "600px", width: "100%" }}
+          className="w-full flex justify-center overflow-hidden rounded-xl bg-background"
+          style={{
+            width: "100%",
+            filter: "invert(0.92) hue-rotate(180deg) contrast(1.05)",
+          }}
           dangerouslySetInnerHTML={{ __html: processEmbedHtml(post.embedCode) }}
         />
       </article>
@@ -37,16 +40,19 @@ export function PostCard({ post }: { post: any }) {
   // If embedUrl iframe link is provided
   if (post.embedUrl) {
     return (
-      <article className="glass-panel group flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/80 bg-surface/80 p-2.5 shadow-2xl transition-all duration-300 hover:border-brand/40 hover:shadow-brand/10 hover:-translate-y-1">
+      <article className="glass-panel group flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/80 bg-elevated/40 p-2 shadow-2xl transition-all duration-300 hover:border-brand/40 hover:shadow-brand/10 hover:-translate-y-1">
         <iframe
           src={post.embedUrl}
-          height="640"
+          height="510"
           width="100%"
           frameBorder="0"
           allowFullScreen
           title={post.title || "LinkedIn post"}
           className="rounded-xl w-full"
-          style={{ minHeight: "600px" }}
+          style={{
+            width: "100%",
+            filter: "invert(0.92) hue-rotate(180deg) contrast(1.05)",
+          }}
         />
       </article>
     );
