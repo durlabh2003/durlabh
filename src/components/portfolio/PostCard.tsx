@@ -21,16 +21,13 @@ function processEmbedHtml(html: string) {
 }
 
 export function PostCard({ post }: { post: any }) {
-  // If full embed HTML is provided, render responsive dark-mode iframe
+  // If full embed HTML is provided, render clean original light theme iframe
   if (post.embedCode) {
     return (
-      <article className="glass-panel group flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/80 bg-elevated/40 p-2 shadow-2xl transition-all duration-300 hover:border-brand/40 hover:shadow-brand/10 hover:-translate-y-1">
+      <article className="glass-panel group flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/80 bg-white/5 p-2 shadow-2xl transition-all duration-300 hover:border-brand/40 hover:shadow-brand/10 hover:-translate-y-1">
         <div
-          className="w-full flex justify-center overflow-hidden rounded-xl bg-background"
-          style={{
-            width: "100%",
-            filter: "invert(0.92) hue-rotate(180deg) contrast(1.05)",
-          }}
+          className="w-full flex justify-center overflow-hidden rounded-xl"
+          style={{ width: "100%" }}
           dangerouslySetInnerHTML={{ __html: processEmbedHtml(post.embedCode) }}
         />
       </article>
@@ -40,7 +37,7 @@ export function PostCard({ post }: { post: any }) {
   // If embedUrl iframe link is provided
   if (post.embedUrl) {
     return (
-      <article className="glass-panel group flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/80 bg-elevated/40 p-2 shadow-2xl transition-all duration-300 hover:border-brand/40 hover:shadow-brand/10 hover:-translate-y-1">
+      <article className="glass-panel group flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/80 bg-white/5 p-2 shadow-2xl transition-all duration-300 hover:border-brand/40 hover:shadow-brand/10 hover:-translate-y-1">
         <iframe
           src={post.embedUrl}
           height="510"
@@ -49,10 +46,7 @@ export function PostCard({ post }: { post: any }) {
           allowFullScreen
           title={post.title || "LinkedIn post"}
           className="rounded-xl w-full"
-          style={{
-            width: "100%",
-            filter: "invert(0.92) hue-rotate(180deg) contrast(1.05)",
-          }}
+          style={{ width: "100%" }}
         />
       </article>
     );
