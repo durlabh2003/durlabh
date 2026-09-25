@@ -15,7 +15,6 @@ type Project = {
   role: string;
   description: string;
   problem: string;
-  tags: string[];
   stack: string[];
   liveUrl?: string;
   notionUrl?: string;
@@ -26,13 +25,11 @@ const projects: Project[] = [
   {
     index: "01",
     name: "Tapinfi",
-    eyebrow: "DIGITAL PRODUCT",
-    role: "Product Manager / Product Lead",
+    eyebrow: "NFC · DIGITAL IDENTITY",
+    role: "Founder · Product Lead",
     description:
-      "NFC-powered digital business card platform designed to make professional networking faster, simpler and completely digital.",
-    problem:
-      "Turn a physical introduction into a measurable digital relationship through instant identity sharing.",
-    tags: ["Digital Identity", "NFC", "User Experience", "Product Strategy"],
+      "A digital business-card platform built around instant sharing, dynamic profiles and lead capture.",
+    problem: "Turn a physical introduction into a measurable digital relationship.",
     stack: ["NFC", "React", "Node.js", "MongoDB"],
     liveUrl: "https://tapinfi-peach.vercel.app/",
     visual: "phone",
@@ -40,26 +37,24 @@ const projects: Project[] = [
   {
     index: "02",
     name: "SignalOS",
-    eyebrow: "AI PRODUCT",
-    role: "Product Strategy / AI Product",
+    eyebrow: "AI · PRODUCT INTELLIGENCE",
+    role: "Product · AI Workflow",
     description:
-      "Agentic product and competitor intelligence platform designed to automatically transform product signals into actionable insights.",
+      "An agentic product and competitor intelligence workspace that turns public product signals into decisions.",
     problem:
       "Reduce the time between discovering a market signal and deciding what to do about it.",
-    tags: ["AI", "Product Intelligence", "Competitive Analysis", "Automation"],
     stack: ["AI Agents", "RAG", "Next.js", "Supabase"],
     visual: "dashboard",
   },
   {
     index: "03",
     name: "Vyapaar Saathi",
-    eyebrow: "SMB PRODUCT",
-    role: "Product Management",
+    eyebrow: "AI · SMB",
+    role: "Product · Strategy",
     description:
-      "A digital business assistant designed to simplify everyday operations and decision-making for small businesses.",
+      "A lightweight digital assistant for small businesses to simplify everyday commerce workflows.",
     problem:
       "Give small-business owners practical tools without enterprise complexity.",
-    tags: ["Product Discovery", "SMB", "UX", "Business Analytics"],
     stack: ["AI", "Next.js", "Supabase"],
     liveUrl: "https://vyapaar-saathi-olive.vercel.app/",
     visual: "dashboard",
@@ -67,13 +62,12 @@ const projects: Project[] = [
   {
     index: "04",
     name: "CafeOS",
-    eyebrow: "B2B SAAS",
-    role: "Product Manager",
+    eyebrow: "SAAS · RESTAURANT OPS",
+    role: "Product Owner",
     description:
-      "An all-in-one SaaS platform helping cafe owners manage ordering, kitchen operations, billing, CRM and analytics.",
+      "A unified operating layer for cafes covering QR ordering, kitchen operations, billing and customer workflows.",
     problem:
       "Replace fragmented operational tools with one connected workflow.",
-    tags: ["B2B SaaS", "Product Strategy", "PRD", "Analytics"],
     stack: ["React", "Node.js", "MongoDB"],
     liveUrl: "https://cafe-os-beige.vercel.app/login",
     visual: "dashboard",
@@ -81,31 +75,28 @@ const projects: Project[] = [
   {
     index: "05",
     name: "RushVerse",
-    eyebrow: "GAME PRODUCT",
-    role: "Product / Game Strategy",
+    eyebrow: "GAMING · PROTOTYPE",
+    role: "Product · Game Systems",
     description:
-      "A game prototype exploring gameplay loops, player engagement and interaction design.",
+      "A game prototype exploring fast feedback loops, progression and replayable interactions.",
     problem:
       "Create a simple core loop that communicates value within the first few seconds.",
-    tags: ["Game Product", "Engagement", "UX", "Product Strategy"],
     stack: ["Game Design", "Systems", "UX"],
     visual: "game",
   },
   {
     index: "06",
     name: "Bharat Svarga",
-    eyebrow: "TRAVEL TECH",
-    role: "Founder / Product",
+    eyebrow: "TRAVEL · AI",
+    role: "Founder · Product",
     description:
-      "AI-assisted tourism platform designed to simplify travel discovery, planning and personalized recommendations.",
+      "An AI-assisted tourism concept connecting personalised journeys with curated destinations and experiences.",
     problem:
       "Make planning culturally rich travel feel as simple as describing what you want.",
-    tags: ["AI", "Travel Tech", "Product Discovery", "Personalization"],
     stack: ["AI", "Recommendations", "Travel UX"],
     visual: "travel",
   },
 ];
-
 
 function Visual({ project }: { project: Project }) {
   if (project.visual === "phone") {
@@ -276,14 +267,11 @@ function ProjectLayer({
           <div className="mt-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-brand">
             {project.eyebrow}
           </div>
-          <div className="mt-2 text-[10px] uppercase tracking-[0.18em] text-white/25">
-            Case Study {project.index}
-          </div>
           <p className="mt-6 max-w-sm text-sm leading-7 text-white/55">
             {project.description}
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
-            {project.tags.map((item) => (
+            {project.stack.map((item) => (
               <span
                 key={item}
                 className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[10px] text-white/55"
@@ -292,40 +280,27 @@ function ProjectLayer({
               </span>
             ))}
           </div>
-          <div className="mt-7 flex flex-wrap items-center gap-4">
-            {project.notionUrl ? (
-              <a
-                href={project.notionUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-xs font-semibold text-cta-ink transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,255,255,0.12)]"
-              >
-                <span>Read Full Case Study</span>
-                <span className="transition-transform duration-300 group-hover:translate-x-1">↗</span>
-              </a>
-            ) : (
-              <span
-                aria-disabled="true"
-                title="Notion case study URL not configured yet"
-                className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-xs font-semibold text-white/35"
-              >
-                <span>Read Full Case Study</span>
-                <span>↗</span>
-              </span>
-            )}
+          <div className="mt-7 flex flex-wrap gap-3">
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-medium text-white/40 transition-colors hover:text-white/75"
+                rel="noreferrer"
+                className="rounded-full bg-brand px-5 py-2.5 text-xs font-semibold text-cta-ink transition-transform hover:-translate-y-0.5"
               >
                 View product ↗
               </a>
             )}
-          </div>
-          <div className="mt-3 text-[10px] uppercase tracking-[0.18em] text-white/20">
-            Detailed research, decisions & outcomes
+            {project.notionUrl && (
+              <a
+                href={project.notionUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-semibold text-white/80 transition-colors hover:bg-white/5"
+              >
+                Detailed case study ↗
+              </a>
+            )}
           </div>
           <div className="mt-6 text-xs text-white/30">Role · {project.role}</div>
         </motion.div>
@@ -422,11 +397,8 @@ export function CinematicProjects() {
                 Selected work · scroll sequence
               </div>
               <h2 className="mt-3 max-w-3xl font-display text-3xl font-medium tracking-tight md:text-5xl">
-                Selected Case Studies
+                Products, systems & experiments.
               </h2>
-              <p className="mt-3 max-w-xl text-sm leading-6 text-white/40 md:text-base">
-                A closer look at the products, problems and decisions behind my work.
-              </p>
             </div>
             <div className="hidden text-right text-[10px] font-mono uppercase tracking-[0.25em] text-white/30 md:block">
               {String(active + 1).padStart(2, "0")} / 06
