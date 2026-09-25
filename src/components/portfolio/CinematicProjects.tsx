@@ -212,10 +212,14 @@ function ProjectLayer({
   active: number;
   reducedMotion: boolean | null;
 }) {
+  // Keep each project visually isolated. The previous version left adjacent
+  // layers at ~18% opacity, which caused the previous project's text to ghost
+  // behind the active project. Each layer now owns a narrower scroll window:
+  // fade out completely before the next layer becomes visible.
   const opacity = useTransform(
     progress,
-    [index - 1.15, index - 0.45, index, index + 0.45, index + 1.15],
-    [0, 0.18, 1, 0.18, 0]
+    [index - 0.5, index - 0.18, index + 0.18, index + 0.5],
+    [0, 1, 1, 0]
   );
   const scale = useTransform(
     progress,
@@ -243,6 +247,9 @@ function ProjectLayer({
       className="absolute inset-0"
       style={{
         opacity: reducedMotion ? (active === index ? 1 : 0) : opacity,
+        // The active layer is always above neighboring layers during the
+        // scroll transition. Inactive layers cannot visually bleed through.
+        zIndex: active === index ? 20 : 0,
         pointerEvents: active === index ? "auto" : "none",
       }}
     >
