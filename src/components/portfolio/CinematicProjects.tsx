@@ -350,6 +350,7 @@ export function CinematicProjects() {
     [0, 1],
     [0, projects.length - 1]
   );
+  const progressScaleX = useTransform(smoothProgress, [0, 1], [0.03, 1]);
 
   useMotionValueEvent(projectProgress, "change", (latest) => {
     const next = Math.min(
@@ -443,11 +444,7 @@ export function CinematicProjects() {
               <motion.div
                 className="h-px origin-left bg-brand"
                 style={{
-                  scaleX: useTransform(
-                    smoothProgress,
-                    [0, 1],
-                    [0.03, 1]
-                  ),
+                  scaleX: progressScaleX,
                 }}
               />
             </div>
