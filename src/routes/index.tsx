@@ -3,6 +3,7 @@ import { Nav } from "@/components/portfolio/Nav";
 import { Hero } from "@/components/portfolio/Hero";
 import { About } from "@/components/portfolio/About";
 import { FeaturedProducts } from "@/components/portfolio/FeaturedProducts";
+import { CinematicProjects } from "@/components/portfolio/CinematicProjects";
 import { CaseStudies } from "@/components/portfolio/CaseStudies";
 import { Experience } from "@/components/portfolio/Experience";
 import { Thinking } from "@/components/portfolio/Thinking";
@@ -21,7 +22,7 @@ export const Route = createFileRoute("/")({
 const sections = [
   { id: "hero", node: <Hero />, reveal: false },
   { id: "about", node: <About />, reveal: true },
-  { id: "products", node: <FeaturedProducts />, reveal: true },
+  { id: "products", node: <CinematicProjects />, reveal: false },
   { id: "case-studies", node: <CaseStudies />, reveal: true },
   { id: "experience", node: <Experience />, reveal: true },
   { id: "thinking", node: <Thinking />, reveal: true },
