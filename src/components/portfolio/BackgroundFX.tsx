@@ -21,10 +21,8 @@ export function BackgroundFX() {
           backgroundImage:
             "linear-gradient(to right, var(--glass-border-strong) 1px, transparent 1px), linear-gradient(to bottom, var(--glass-border-strong) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
-          maskImage:
-            "radial-gradient(ellipse at 50% 40%, black 30%, transparent 75%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse at 50% 40%, black 30%, transparent 75%)",
+          maskImage: "radial-gradient(ellipse at 50% 40%, black 30%, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(ellipse at 50% 40%, black 30%, transparent 75%)",
         }}
       />
 
@@ -54,8 +52,7 @@ export function BackgroundFX() {
       <div
         className="absolute inset-0"
         style={{
-          background:
-            "radial-gradient(ellipse at center, transparent 40%, var(--surface) 100%)",
+          background: "radial-gradient(ellipse at center, transparent 40%, var(--surface) 100%)",
         }}
       />
     </div>

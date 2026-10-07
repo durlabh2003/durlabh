@@ -14,8 +14,6 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
 import { Footer } from "@/components/portfolio/Footer";
 
-
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -97,9 +95,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Durlabh Daryani — AI Product Manager" },
-      { name: "twitter:description", content: "Portfolio of Durlabh Daryani — AI Product Manager based in Jaipur. Building AI-first products through research, rapid experimentation and data-driven decisions." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1691daff-a4ce-4b75-8809-164cbe884fbc/id-preview-b777ceaf--5de72030-551f-4d0c-a3d5-9531e72754b6.lovable.app-1784794898085.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1691daff-a4ce-4b75-8809-164cbe884fbc/id-preview-b777ceaf--5de72030-551f-4d0c-a3d5-9531e72754b6.lovable.app-1784794898085.png" },
+      {
+        name: "twitter:description",
+        content:
+          "Portfolio of Durlabh Daryani — AI Product Manager based in Jaipur. Building AI-first products through research, rapid experimentation and data-driven decisions.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1691daff-a4ce-4b75-8809-164cbe884fbc/id-preview-b777ceaf--5de72030-551f-4d0c-a3d5-9531e72754b6.lovable.app-1784794898085.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1691daff-a4ce-4b75-8809-164cbe884fbc/id-preview-b777ceaf--5de72030-551f-4d0c-a3d5-9531e72754b6.lovable.app-1784794898085.png",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -147,6 +157,5 @@ function RootComponent() {
       <Footer />
       <Toaster />
     </QueryClientProvider>
-
   );
 }

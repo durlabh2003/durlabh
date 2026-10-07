@@ -2,12 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/portfolio/Nav";
 import { Hero } from "@/components/portfolio/Hero";
 import { About } from "@/components/portfolio/About";
-import { CinematicProjects } from "@/components/portfolio/CinematicProjects";
+import { FeaturedProducts } from "@/components/portfolio/FeaturedProducts";
 import { CaseStudies } from "@/components/portfolio/CaseStudies";
 import { Experience } from "@/components/portfolio/Experience";
 import { Thinking } from "@/components/portfolio/Thinking";
 import { LinkedInPosts } from "@/components/portfolio/LinkedInPosts";
 import { Frameworks } from "@/components/portfolio/Frameworks";
+import { HowIOperate } from "@/components/portfolio/HowIOperate";
+import { Testimonials } from "@/components/portfolio/Testimonials";
 import { Lab } from "@/components/portfolio/Lab";
 import { Education } from "@/components/portfolio/Education";
 import { Contact } from "@/components/portfolio/Contact";
@@ -21,12 +23,14 @@ export const Route = createFileRoute("/")({
 const sections = [
   { id: "hero", node: <Hero />, reveal: false },
   { id: "about", node: <About />, reveal: true },
-  { id: "products", node: <CinematicProjects />, reveal: false },
+  { id: "products", node: <FeaturedProducts />, reveal: false },
   { id: "case-studies", node: <CaseStudies />, reveal: true },
   { id: "experience", node: <Experience />, reveal: true },
   { id: "thinking", node: <Thinking />, reveal: true },
   { id: "posts", node: <LinkedInPosts />, reveal: true },
   { id: "frameworks", node: <Frameworks />, reveal: true },
+  { id: "operate", node: <HowIOperate />, reveal: true },
+  { id: "testimonials", node: <Testimonials />, reveal: true },
   { id: "lab", node: <Lab />, reveal: true },
   { id: "education", node: <Education />, reveal: true },
   { id: "contact", node: <Contact />, reveal: true },
@@ -46,12 +50,7 @@ function Index() {
       <Nav />
       <main className="w-full">
         {sections.map((s) => (
-          <section
-            key={s.id}
-            id={s.id}
-            className="w-full scroll-mt-20"
-            aria-label={s.id}
-          >
+          <section key={s.id} id={s.id} className="w-full scroll-mt-20" aria-label={s.id}>
             {s.reveal ? <Reveal>{s.node}</Reveal> : s.node}
           </section>
         ))}

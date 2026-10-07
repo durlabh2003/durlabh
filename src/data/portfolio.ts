@@ -1,14 +1,12 @@
-// ⚠️ MOCK DATA — case studies illustrative.
-// The numbers, metrics and links below are placeholders used to design the
-// portfolio. Swap in real, verified numbers (and real live/PRD URLs) before
-// this site goes fully public with Durlabh's name attached to unverifiable
-// stats. Concept projects are explicitly flagged via `status: "concept"`
-// and unavailable links via `linksLive: false`.
+// Portfolio content uses placeholder proof links where real public artifacts are
+// not available yet. Keep those placeholders visible, then replace them with
+// live demos, PRDs, screenshots, or Loom walkthroughs before sending the site to
+// recruiters.
 
 export const profile = {
   name: "Durlabh Daryani",
   role: "AI Product Manager",
-  tagline: "Building and shipping real products before my first PM role.",
+  tagline: "I turn fuzzy AI product ideas into researched, scoped, and testable MVPs.",
   location: "Jaipur, Rajasthan, India",
   coords: "JPR // 26.9124° N",
   email: "durlabh.daryani@gmail.com",
@@ -21,19 +19,19 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "I've built and shipped four products end-to-end — Kartify, CafeOS, Tapinfi and FinMate — before ever holding a Product Manager title. Each one ran through the full product loop: customer discovery, JTBD framing, prioritization, scoping, shipping, and post-launch measurement. The craft is already the work I do.",
-    "My BA and QA background is not a side story — it's the same PM work under a different job title. Requirements gathering, acceptance criteria, stakeholder negotiation, bug triage and release validation are exactly what Product Managers do before a feature gets written. The self-initiated products are even stronger evidence: nobody assigned them, nobody paid me for them, and I still chose the problems, ran the research and shipped the builds. That kind of unprompted judgment is harder to teach than a title.",
-    "I want to be one of the leading AI Product Managers of the next decade. Not for the title — because the products that matter will be the ones that explain their reasoning, not just their output, and that's the same principle I designed into Kartify. That's the trajectory I'm on.",
+    "I build AI-first product prototypes from discovery to launch-ready MVP: user interviews, JTBD framing, prioritization, PRDs, QA, and post-launch measurement plans.",
+    "My BA and QA background gives me the practical PM muscle: requirements clarity, acceptance criteria, stakeholder communication, bug triage, release validation, and translating fuzzy customer problems into buildable scope.",
+    "This portfolio is designed around proof. Where a public demo, PRD, or pilot artifact is not available yet, I show a clearly marked placeholder so the claim is visible without pretending the evidence is final.",
   ],
   stats: [
-    { label: "Products Shipped", value: 4, suffix: "" },
+    { label: "Product Builds", value: 4, suffix: "" },
     { label: "Case Studies", value: 6, suffix: "" },
     { label: "Frameworks Practiced", value: 5, suffix: "+" },
     { label: "AI Experiments", value: 20, suffix: "+" },
   ],
 };
 
-export type ProjectStatus = "shipped" | "concept";
+export type ProjectStatus = "shipped" | "pilot" | "concept";
 
 export const featuredProducts = [
   {
@@ -41,7 +39,7 @@ export const featuredProducts = [
     kicker: "AI SHOPPING",
     name: "Kartify",
     role: "PM · UX · AI Workflow",
-    status: "shipped" as ProjectStatus,
+    status: "pilot" as ProjectStatus,
     description:
       "Conversational AI shopping assistant that researches products, compares options and recommends the best fit.",
     longDescription:
@@ -50,6 +48,10 @@ export const featuredProducts = [
     liveUrl: "https://kartify.ai",
     prdUrl: "https://kartify.ai/prd",
     linksLive: false,
+    placeholderProofUrl: "/placeholders/product-proof.html",
+    placeholderPrdUrl: "/placeholders/prd-placeholder.html",
+    proofNote:
+      "Public demo and PRD are currently represented by placeholders. Replace with a live walkthrough, screenshots, or PRD when available.",
     accent: "from-emerald-400/30 to-emerald-900/10",
   },
   {
@@ -57,7 +59,7 @@ export const featuredProducts = [
     kicker: "RESTAURANT SaaS",
     name: "CafeOS",
     role: "Product Owner",
-    status: "shipped" as ProjectStatus,
+    status: "pilot" as ProjectStatus,
     description:
       "Operating system for cafes — QR ordering, KDS, billing, CRM, inventory and loyalty in one workflow.",
     longDescription:
@@ -66,6 +68,10 @@ export const featuredProducts = [
     liveUrl: "https://cafeos.app",
     prdUrl: "https://cafeos.app/prd",
     linksLive: false,
+    placeholderProofUrl: "/placeholders/product-proof.html",
+    placeholderPrdUrl: "/placeholders/prd-placeholder.html",
+    proofNote:
+      "Pilot metrics are self-reported placeholders until backed by screenshots, logs, or operator testimonials.",
     accent: "from-lime-400/30 to-lime-900/10",
   },
   {
@@ -73,7 +79,7 @@ export const featuredProducts = [
     kicker: "AI FINTECH",
     name: "FinMate",
     role: "Founding PM",
-    status: "shipped" as ProjectStatus,
+    status: "pilot" as ProjectStatus,
     description:
       "Gen-Z focused AI financial assistant for budgeting, saving and building healthy money habits.",
     longDescription:
@@ -82,6 +88,10 @@ export const featuredProducts = [
     liveUrl: "https://finmate.app",
     prdUrl: "https://finmate.app/prd",
     linksLive: false,
+    placeholderProofUrl: "/placeholders/product-proof.html",
+    placeholderPrdUrl: "/placeholders/prd-placeholder.html",
+    proofNote:
+      "Closed-beta proof is mocked for now. Add beta screenshots, retention notes, or a walkthrough before broad sharing.",
     accent: "from-teal-400/30 to-teal-900/10",
   },
   {
@@ -89,7 +99,7 @@ export const featuredProducts = [
     kicker: "SaaS · FOUNDER",
     name: "Tapinfi",
     role: "Founder",
-    status: "shipped" as ProjectStatus,
+    status: "pilot" as ProjectStatus,
     description:
       "NFC-enabled digital business card platform with dynamic profiles, analytics and lead capture.",
     longDescription:
@@ -98,6 +108,10 @@ export const featuredProducts = [
     liveUrl: "https://tapinfi.com",
     prdUrl: "https://tapinfi.com/prd",
     linksLive: false,
+    placeholderProofUrl: "/placeholders/product-proof.html",
+    placeholderPrdUrl: "/placeholders/prd-placeholder.html",
+    proofNote:
+      "Replace this placeholder with the live Tapinfi profile flow, analytics screenshots, or a short demo video.",
     accent: "from-cyan-400/30 to-cyan-900/10",
   },
 ];
@@ -107,19 +121,17 @@ export const caseStudies = [
     slug: "kartify",
     name: "Kartify",
     tag: "AI Shopping Assistant",
-    status: "shipped" as ProjectStatus,
+    status: "pilot" as ProjectStatus,
     problem:
       "Shoppers waste hours comparing products across marketplaces with inconsistent specs, reviews and pricing.",
     research:
       "12 user interviews across three shopping personas; competitive teardown of Amazon, Perplexity Shopping and Google Shopping.",
-    jtbd:
-      "When I'm buying a considered product, I want a trusted advisor that asks the right questions, so I can decide confidently without opening 20 tabs.",
-    prd:
-      "Conversational search with clarifying follow-ups, memory of preferences, structured comparison and a recommendation with reasoning.",
+    jtbd: "When I'm buying a considered product, I want a trusted advisor that asks the right questions, so I can decide confidently without opening 20 tabs.",
+    prd: "Conversational search with clarifying follow-ups, memory of preferences, structured comparison and a recommendation with reasoning.",
     metrics: [
-      "MVP shipped in 6 weeks",
-      "Task-completion ~78% in an internal usability test (n=9, self-run)",
-      "Avg. session depth ~6.4 turns in the same test",
+      "Prototype MVP completed in 6 weeks",
+      "Internal usability test: ~78% task completion (n=9, self-run)",
+      "Internal usability test: avg. session depth ~6.4 turns",
     ],
     lessons:
       "Trust comes from showing reasoning, not just the answer. Comparison tables converted better than prose recommendations. Used JTBD to reframe the search box as a conversation.",
@@ -128,19 +140,17 @@ export const caseStudies = [
     slug: "cafeos",
     name: "CafeOS",
     tag: "Restaurant SaaS",
-    status: "shipped" as ProjectStatus,
+    status: "pilot" as ProjectStatus,
     problem:
       "Independent cafes juggle 4–6 disconnected tools for ordering, billing, inventory and loyalty — losing revenue to friction.",
     research:
       "Shadowed 4 cafes for a full day each; mapped 22 operational touchpoints and quantified time-loss per shift.",
-    jtbd:
-      "When it's a rush hour, I want one system that keeps orders, kitchen and payments in sync, so my team doesn't drop tickets.",
-    prd:
-      "Single-app KDS, QR ordering, POS, CRM and inventory with a unified operator dashboard.",
+    jtbd: "When it's a rush hour, I want one system that keeps orders, kitchen and payments in sync, so my team doesn't drop tickets.",
+    prd: "Single-app KDS, QR ordering, POS, CRM and inventory with a unified operator dashboard.",
     metrics: [
-      "Kitchen ticket time ↓ ~31% in a 3-cafe pilot (operator self-reported)",
-      "Order errors ↓ ~42% in the same pilot (operator self-reported)",
-      "3 cafes onboarded in beta",
+      "Pilot signal: kitchen ticket time down ~31% (3 cafes, operator self-reported)",
+      "Pilot signal: order errors down ~42% (same pilot, operator self-reported)",
+      "Pilot scope: 3 cafes onboarded in beta",
     ],
     lessons:
       "Operators don't want features — they want fewer taps. Used the Opportunity Solution Tree to keep every screen tied to a measurable operator outcome.",
@@ -149,17 +159,15 @@ export const caseStudies = [
     slug: "tapinfi",
     name: "Tapinfi",
     tag: "Digital Business Cards",
-    status: "shipped" as ProjectStatus,
+    status: "pilot" as ProjectStatus,
     problem:
       "Paper business cards get lost; existing digital cards feel like static link-trees with no analytics.",
     research:
       "Surveyed 140 sales and creator-economy users; benchmarked HiHello, Popl and Blinq on onboarding and share-flow.",
-    jtbd:
-      "When I meet someone new, I want to share a rich profile in one tap, so I actually get remembered and followed up with.",
-    prd:
-      "NFC + QR sharing, themed dynamic profiles, lead capture forms, analytics on views/saves and CRM export.",
+    jtbd: "When I meet someone new, I want to share a rich profile in one tap, so I actually get remembered and followed up with.",
+    prd: "NFC + QR sharing, themed dynamic profiles, lead capture forms, analytics on views/saves and CRM export.",
     metrics: [
-      "Onboarding to first share < 90s (measured in internal QA runs)",
+      "Internal QA: onboarding to first share < 90s",
       "Target: 3+ leads per active user / month",
       "Target: 60% repeat share rate by month 3",
     ],
@@ -170,18 +178,16 @@ export const caseStudies = [
     slug: "finmate",
     name: "FinMate",
     tag: "AI Personal Finance",
-    status: "shipped" as ProjectStatus,
+    status: "pilot" as ProjectStatus,
     problem:
       "Gen-Z users find traditional budgeting apps preachy and cluttered; they abandon within a week.",
     research:
       "8 diary studies over 14 days; identified guilt, opacity and manual entry as top drop-off drivers.",
-    jtbd:
-      "When I spend money, I want to know if I'm on track without judgement, so I feel in control instead of anxious.",
-    prd:
-      "Auto-categorisation, weekly financial health score, goal nudges and an AI coach that answers in plain language.",
+    jtbd: "When I spend money, I want to know if I'm on track without judgement, so I feel in control instead of anxious.",
+    prd: "Auto-categorisation, weekly financial health score, goal nudges and an AI coach that answers in plain language.",
     metrics: [
       "Target: 45% Day-7 retention in closed beta",
-      "Time to first insight < 60s (measured in internal QA)",
+      "Internal QA: time to first insight < 60s",
       "Target: NPS 40+ in closed beta",
     ],
     lessons:
@@ -196,10 +202,8 @@ export const caseStudies = [
       "Students waste hours navigating fragmented campus info — timetables, deadlines, forms, faculty availability.",
     research:
       "Interviewed 20 students across 3 universities; catalogued 34 recurring 'where do I find X?' queries.",
-    jtbd:
-      "When something's due or unclear, I want one place to ask and get the right answer, so I don't miss deadlines.",
-    prd:
-      "RAG-based chat over campus docs, personalised timetable, deadline reminders and faculty office-hour booking.",
+    jtbd: "When something's due or unclear, I want one place to ask and get the right answer, so I don't miss deadlines.",
+    prd: "RAG-based chat over campus docs, personalised timetable, deadline reminders and faculty office-hour booking.",
     metrics: [
       "Prototype answered ~87% of the top-30 queries in a self-graded eval set (concept-stage, not peer-reviewed)",
       "Avg. answer time ~2.4s in local benchmark",
@@ -217,10 +221,8 @@ export const caseStudies = [
       "Consumers want to buy sustainably but can't verify brand claims; greenwashing erodes trust.",
     research:
       "Studied 30 D2C brands' sustainability claims; mapped 6 categories of vague vs. verifiable claims.",
-    jtbd:
-      "When I'm choosing a product, I want to know if the brand's claims are real, so my money supports actual impact.",
-    prd:
-      "Claim-verification score per brand, evidence linking, and a browser extension surfacing scores at checkout.",
+    jtbd: "When I'm choosing a product, I want to know if the brand's claims are real, so my money supports actual impact.",
+    prd: "Claim-verification score per brand, evidence linking, and a browser extension surfacing scores at checkout.",
     metrics: [
       "Scoring rubric reviewed by 3 sustainability practitioners (informal)",
       "Extension prototype walkthrough tested with 12 users (concept validation)",
@@ -267,12 +269,7 @@ export const startups = [
     tag: "Digital Business Card SaaS",
     summary:
       "Built a SaaS platform enabling professionals to instantly share digital profiles using NFC-enabled smart cards.",
-    responsibilities: [
-      "Product Vision",
-      "Pricing Strategy",
-      "GTM & Growth",
-      "Roadmap",
-    ],
+    responsibilities: ["Product Vision", "Pricing Strategy", "GTM & Growth", "Roadmap"],
   },
   {
     name: "Bharat Svarga",
@@ -281,10 +278,10 @@ export const startups = [
     summary:
       "AI-powered travel platform focused on spiritual and heritage circuits in Rajasthan — starting with Jaipur–Pushkar–Ajmer — that pairs personalised itineraries with a curated network of local vendors (homestays, guides, transport). Onboarded ~25 pilot vendors in Jaipur before scaling into a second circuit.",
     responsibilities: [
-      "Product Discovery (traveller + vendor interviews across Jaipur)",
-      "Business Model (commission + vendor subscription tiers)",
-      "AI itinerary engine (LLM + regional POI knowledge base)",
-      "Service Design for offline vendor onboarding",
+      "Product Discovery",
+      "Business Model",
+      "AI Itinerary Engine",
+      "Vendor Onboarding",
     ],
   },
 ];
@@ -352,7 +349,6 @@ export const articles: Article[] = [
     ],
   },
   {
-
     slug: "mvp-in-6-weeks",
     title: "How I build MVPs in 6 weeks",
     tag: "Playbook",
@@ -469,31 +465,54 @@ export const articles: Article[] = [
 ];
 
 export const aiLab = [
-  { name: "Prompt Engineering", desc: "Structured prompt libraries, evals and prompt-as-spec workflows." },
+  {
+    name: "Prompt Engineering",
+    desc: "Structured prompt libraries, evals and prompt-as-spec workflows.",
+  },
   { name: "AI Agents", desc: "Tool-using agents with planning, memory and reflection loops." },
-  { name: "Multi-Agent Systems", desc: "Coordinated agents for research, comparison and synthesis tasks." },
-  { name: "MCP", desc: "Model Context Protocol tooling to give assistants safe access to real systems." },
-  { name: "n8n Automation", desc: "Product-ops workflows: research, outreach, monitoring and triage." },
-  { name: "RAG + Vector DBs", desc: "Grounding LLMs in private knowledge with retrieval-quality evals." },
+  {
+    name: "Multi-Agent Systems",
+    desc: "Coordinated agents for research, comparison and synthesis tasks.",
+  },
+  {
+    name: "MCP",
+    desc: "Model Context Protocol tooling to give assistants safe access to real systems.",
+  },
+  {
+    name: "n8n Automation",
+    desc: "Product-ops workflows: research, outreach, monitoring and triage.",
+  },
+  {
+    name: "RAG + Vector DBs",
+    desc: "Grounding LLMs in private knowledge with retrieval-quality evals.",
+  },
 ];
 
 export const skills = {
   Product: [
-    "Discovery", "Strategy", "Roadmapping", "PRDs", "Business Analysis",
-    "User Interviews", "Personas", "JTBD", "Journey Mapping",
-    "Prioritization (RICE / Kano / MoSCoW)", "North Star", "A/B Testing", "Analytics",
+    "Discovery",
+    "Strategy",
+    "Roadmapping",
+    "PRDs",
+    "Business Analysis",
+    "User Interviews",
+    "Personas",
+    "JTBD",
+    "Journey Mapping",
+    "Prioritization (RICE / Kano / MoSCoW)",
+    "North Star",
+    "A/B Testing",
+    "Analytics",
   ],
-  "AI & Automation": [
-    "LLMs", "Prompt Engineering", "AI Agents", "MCP", "RAG", "n8n", "No-Code",
-  ],
-  "Design & Tools": [
-    "Figma", "Wireframing", "UI/UX",
-  ],
-  Technical: [
-    "SQL", "Firebase", "Supabase", "Next.js", "React", "Node.js", "MongoDB", "GitHub",
-  ],
+  "AI & Automation": ["LLMs", "Prompt Engineering", "AI Agents", "MCP", "RAG", "n8n", "No-Code"],
+  "Design & Tools": ["Figma", "Wireframing", "UI/UX"],
+  Technical: ["SQL", "Firebase", "Supabase", "Next.js", "React", "Node.js", "MongoDB", "GitHub"],
   Delivery: [
-    "Agile", "Scrum", "Sprint Planning", "Stakeholder Management", "Cross-functional Collaboration",
+    "Agile",
+    "Scrum",
+    "Sprint Planning",
+    "Stakeholder Management",
+    "Cross-functional Collaboration",
   ],
 };
 
@@ -516,12 +535,15 @@ export const education = {
 // Newest first — the top item shows first on home.
 export type LinkedInPost = {
   id: string;
-  date: string;   // ISO yyyy-mm-dd, used for sorting
+  date: string; // ISO yyyy-mm-dd, used for sorting
   tag: string;
   excerpt: string;
   cover?: string;
   url: string;
   embedUrl: string; // placeholder — not yet used by the UI (see comment above)
+  title?: string;
+  postUrl?: string;
+  embedCode?: string;
 };
 
 export const linkedinPosts: LinkedInPost[] = [
@@ -531,11 +553,9 @@ export const linkedinPosts: LinkedInPost[] = [
     tag: "AI",
     excerpt:
       "The best AI PMs I know spend 80% of their time on evals and 20% on prompts. Here's the loop I run every week…",
-    cover:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+    cover: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
     url: "https://www.linkedin.com/in/durlabhdaryani",
-    embedUrl:
-      "https://www.linkedin.com/embed/feed/update/urn:li:share:0000000000000000001",
+    embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:share:0000000000000000001",
   },
   {
     id: "post-2",
@@ -543,23 +563,18 @@ export const linkedinPosts: LinkedInPost[] = [
     tag: "Discovery",
     excerpt:
       "Customer discovery without a research team: 5 interviews, one spreadsheet, and the JTBD you actually ship against.",
-    cover:
-      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80",
+    cover: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80",
     url: "https://www.linkedin.com/in/durlabhdaryani",
-    embedUrl:
-      "https://www.linkedin.com/embed/feed/update/urn:li:share:0000000000000000002",
+    embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:share:0000000000000000002",
   },
   {
     id: "post-3",
     date: "2026-06-20",
     tag: "Playbook",
-    excerpt:
-      "How I ship an MVP in 6 weeks — the exact week-by-week breakdown for Kartify.",
-    cover:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    excerpt: "How I ship an MVP in 6 weeks — the exact week-by-week breakdown for Kartify.",
+    cover: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     url: "https://www.linkedin.com/in/durlabhdaryani",
-    embedUrl:
-      "https://www.linkedin.com/embed/feed/update/urn:li:share:0000000000000000003",
+    embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:share:0000000000000000003",
   },
   {
     id: "post-4",
@@ -567,11 +582,9 @@ export const linkedinPosts: LinkedInPost[] = [
     tag: "Growth",
     excerpt:
       "Retention loops that actually compound — a teardown of the three loops powering CafeOS.",
-    cover:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    cover: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     url: "https://www.linkedin.com/in/durlabhdaryani",
-    embedUrl:
-      "https://www.linkedin.com/embed/feed/update/urn:li:share:0000000000000000004",
+    embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:share:0000000000000000004",
   },
 ];
 

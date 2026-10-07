@@ -9,19 +9,17 @@ export function Education() {
       <div className="mx-auto max-w-7xl px-6 py-24">
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <h2 className="font-display text-sm font-bold uppercase tracking-[0.2em] text-muted">
+            <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-brand">
               Education & Certifications
             </h2>
           </div>
           <div className="lg:col-span-8 space-y-10">
             <Reveal>
               <div className="border border-border rounded-2xl p-8">
-                <div className="text-[10px] font-mono uppercase tracking-widest text-brand mb-2">
+                <div className="text-xs font-mono uppercase tracking-widest text-brand mb-2">
                   Degree
                 </div>
-                <div className="font-display text-2xl font-medium">
-                  {education.degree}
-                </div>
+                <div className="font-display text-2xl font-medium">{education.degree}</div>
                 <div className="mt-1 text-sm text-muted">
                   {education.specialization} · {education.school}
                 </div>
@@ -29,7 +27,7 @@ export function Education() {
             </Reveal>
             <Reveal>
               <div>
-                <div className="text-[10px] font-mono uppercase tracking-widest text-muted mb-4">
+                <div className="text-xs font-mono uppercase tracking-widest text-muted mb-4">
                   Certifications
                 </div>
                 <div className="flex flex-wrap gap-2">

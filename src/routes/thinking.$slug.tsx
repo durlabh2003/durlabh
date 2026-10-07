@@ -74,9 +74,7 @@ function ArticlePage() {
               <h1 className="font-display text-3xl font-medium tracking-tight text-ink md:text-5xl">
                 {article.title}
               </h1>
-              <p className="mt-5 text-lg leading-relaxed text-muted">
-                {article.excerpt}
-              </p>
+              <p className="mt-5 text-lg leading-relaxed text-muted">{article.excerpt}</p>
             </Reveal>
 
             <div className="mt-12 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
@@ -84,9 +82,7 @@ function ArticlePage() {
             <div className="mt-12 space-y-6">
               {article.body.map((p: string, i: number) => (
                 <Reveal key={i} delay={i * 0.04}>
-                  <p className="text-[15px] leading-[1.8] text-ink/85 md:text-base">
-                    {p}
-                  </p>
+                  <p className="text-[15px] leading-[1.8] text-ink/85 md:text-base">{p}</p>
                 </Reveal>
               ))}
             </div>
@@ -139,15 +135,11 @@ function ArticleNotFound() {
     <div className="mac-desktop mac-desktop-noise min-h-dvh font-sans text-ink">
       <Nav />
       <main className="relative z-10 mx-auto max-w-3xl px-4 pb-16 pt-32 text-center">
-        <div className="mb-3 text-[11px] font-medium uppercase tracking-widest text-brand">
-          404
-        </div>
+        <div className="mb-3 text-[11px] font-medium uppercase tracking-widest text-brand">404</div>
         <h1 className="font-display text-3xl font-medium tracking-tight md:text-5xl">
           Essay not found
         </h1>
-        <p className="mt-3 text-muted">
-          The essay you're looking for doesn't exist yet.
-        </p>
+        <p className="mt-3 text-muted">The essay you're looking for doesn't exist yet.</p>
         <Link
           to="/thinking"
           className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-elevated/50 px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-elevated"
@@ -165,9 +157,7 @@ function ArticleError({ reset }: { error: Error; reset: () => void }) {
     <div className="mac-desktop min-h-dvh font-sans text-ink">
       <Nav />
       <main className="relative z-10 mx-auto max-w-3xl px-4 pb-16 pt-32 text-center">
-        <h1 className="font-display text-3xl font-medium tracking-tight">
-          This essay didn't load
-        </h1>
+        <h1 className="font-display text-3xl font-medium tracking-tight">This essay didn't load</h1>
         <button
           onClick={reset}
           className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-elevated/50 px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-elevated"

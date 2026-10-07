@@ -1,9 +1,6 @@
 import { queryOptions, useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import type {
-  Article,
-  LinkedInPost,
-} from "@/data/portfolio";
+import type { Article, LinkedInPost } from "@/data/portfolio";
 
 /**
  * Portfolio content is stored in a single Supabase table `portfolio_content`
@@ -31,7 +28,7 @@ export type AboutSection = {
   stats: { label: string; value: number; suffix: string }[];
 };
 
-export type ProjectStatus = "shipped" | "concept";
+export type ProjectStatus = "shipped" | "pilot" | "concept";
 
 export type FeaturedProduct = {
   index: string;
@@ -45,6 +42,9 @@ export type FeaturedProduct = {
   liveUrl: string;
   prdUrl: string;
   linksLive: boolean;
+  placeholderProofUrl?: string;
+  placeholderPrdUrl?: string;
+  proofNote?: string;
   accent: string;
 };
 
@@ -59,6 +59,7 @@ export type CaseStudy = {
   prd: string;
   metrics: string[];
   lessons: string;
+  notionEmbed?: string;
 };
 
 export type ExperienceItem = {
@@ -116,14 +117,14 @@ export type PortfolioContentRow = {
 
 // ---------- Fetchers ----------
 
-export async function fetchAllPortfolioContent(): Promise<
-  Partial<PortfolioSectionMap>
-> {
-  const { data, error } = await (supabase as unknown as {
-    from: (t: string) => {
-      select: (c: string) => Promise<{ data: PortfolioContentRow[] | null; error: unknown }>;
-    };
-  })
+export async function fetchAllPortfolioContent(): Promise<Partial<PortfolioSectionMap>> {
+  const { data, error } = await (
+    supabase as unknown as {
+      from: (t: string) => {
+        select: (c: string) => Promise<{ data: PortfolioContentRow[] | null; error: unknown }>;
+      };
+    }
+  )
     .from("portfolio_content")
     .select("section, data");
 
@@ -135,20 +136,25 @@ export async function fetchAllPortfolioContent(): Promise<
 }
 
 export async function fetchPortfolioSection<K extends PortfolioSectionKey>(
-  section: K
+  section: K,
 ): Promise<PortfolioSectionMap[K] | null> {
-  const { data, error } = await (supabase as unknown as {
-    from: (t: string) => {
-      select: (c: string) => {
-        eq: (col: string, val: string) => {
-          maybeSingle: () => Promise<{
-            data: { data: unknown } | null;
-            error: unknown;
-          }>;
+  const { data, error } = await (
+    supabase as unknown as {
+      from: (t: string) => {
+        select: (c: string) => {
+          eq: (
+            col: string,
+            val: string,
+          ) => {
+            maybeSingle: () => Promise<{
+              data: { data: unknown } | null;
+              error: unknown;
+            }>;
+          };
         };
       };
-    };
-  })
+    }
+  )
     .from("portfolio_content")
     .select("data")
     .eq("section", section)
@@ -189,21 +195,20 @@ export function usePortfolioContent() {
 // (enforced by RLS policies on the portfolio_content table).
 export async function upsertPortfolioSection<K extends PortfolioSectionKey>(
   section: K,
-  data: PortfolioSectionMap[K]
+  data: PortfolioSectionMap[K],
 ) {
-  const { error } = await (supabase as unknown as {
-    from: (t: string) => {
-      upsert: (
-        row: { section: string; data: unknown },
-        opts: { onConflict: string }
-      ) => Promise<{ error: unknown }>;
-    };
-  })
+  const { error } = await (
+    supabase as unknown as {
+      from: (t: string) => {
+        upsert: (
+          row: { section: string; data: unknown },
+          opts: { onConflict: string },
+        ) => Promise<{ error: unknown }>;
+      };
+    }
+  )
     .from("portfolio_content")
-    .upsert(
-      { section, data: data as unknown },
-      { onConflict: "section" }
-    );
+    .upsert({ section, data: data as unknown }, { onConflict: "section" });
 
   if (error) throw error;
 }
@@ -228,9 +233,7 @@ const FALLBACK: PortfolioSectionMap = {
 };
 
 /** Returns DB content for a section, falling back to the static bundled data. */
-export function useSection<K extends PortfolioSectionKey>(
-  key: K
-): PortfolioSectionMap[K] {
+export function useSection<K extends PortfolioSectionKey>(key: K): PortfolioSectionMap[K] {
   const { data } = usePortfolioSection(key);
   return (data as PortfolioSectionMap[K] | null) ?? FALLBACK[key];
 }

@@ -20,7 +20,11 @@ function processEmbedHtml(html: string) {
   return updated;
 }
 
-export function PostCard({ post }: { post: any }) {
+function hasRealEmbedUrl(embedUrl?: string) {
+  return Boolean(embedUrl && !embedUrl.includes("000000000000000000"));
+}
+
+export function PostCard({ post }: { post: LinkedInPost }) {
   // If full embed HTML is provided, render clean original light theme iframe
   if (post.embedCode) {
     return (
@@ -35,7 +39,7 @@ export function PostCard({ post }: { post: any }) {
   }
 
   // If embedUrl iframe link is provided
-  if (post.embedUrl) {
+  if (hasRealEmbedUrl(post.embedUrl)) {
     return (
       <article className="glass-panel group flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/80 bg-white/5 p-2 shadow-2xl transition-all duration-300 hover:border-brand/40 hover:shadow-brand/10 hover:-translate-y-1">
         <iframe
@@ -73,7 +77,7 @@ export function PostCard({ post }: { post: any }) {
       )}
 
       <div className="flex flex-1 flex-col gap-4 p-5">
-        <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-muted">
+        <div className="flex items-center justify-between font-mono text-xs uppercase tracking-widest text-muted">
           <span className="text-brand">#{post.tag || "Thoughts"}</span>
           {post.date && (
             <time dateTime={post.date} className="tabular-nums">
@@ -84,7 +88,7 @@ export function PostCard({ post }: { post: any }) {
         <p className="text-sm leading-relaxed text-ink/90 line-clamp-4">
           {post.excerpt || post.title}
         </p>
-        <div className="mt-auto flex items-center justify-between pt-2 font-mono text-[11px]">
+        <div className="mt-auto flex items-center justify-between pt-2 font-mono text-xs">
           <a
             href={post.url || post.postUrl || "https://linkedin.com/in/durlabhdaryani"}
             target="_blank"

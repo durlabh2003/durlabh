@@ -15,12 +15,12 @@ export const Route = createFileRoute("/projects")({
       {
         name: "description",
         content:
-          "All shipped products, prototypes and case studies by Durlabh Daryani — AI Product Manager.",
+          "Product builds, prototypes and case studies by Durlabh Daryani — AI Product Manager.",
       },
       { property: "og:title", content: "Projects — Durlabh Daryani" },
       {
         property: "og:description",
-        content: "All shipped products, prototypes and case studies by Durlabh Daryani.",
+        content: "Product builds, prototypes and case studies by Durlabh Daryani.",
       },
     ],
   }),
@@ -56,9 +56,8 @@ function ProjectsPage() {
                   All Projects
                 </h1>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">
-                  {featuredProducts.length + caseStudies.length} projects across
-                  shipped products, prototypes and case studies. Click any card to
-                  inspect.
+                  {featuredProducts.length + caseStudies.length} projects across product builds,
+                  prototypes, and case studies. Click any card to inspect the proof status.
                 </p>
               </div>
             </Reveal>
@@ -66,7 +65,7 @@ function ProjectsPage() {
             <section className="mb-20">
               <h2 className="mb-8 flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-muted">
                 <span className="text-brand">●</span>
-                Shipped Products
+                Product Builds
                 <span className="h-px flex-1 bg-border" />
                 <span>{featuredProducts.length} items</span>
               </h2>
@@ -87,15 +86,26 @@ function ProjectsPage() {
                           Open
                         </span>
                       </div>
-                      <h3 className="font-display text-2xl font-medium text-ink">
-                        {p.name}
-                      </h3>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-display text-2xl font-medium text-ink">{p.name}</h3>
+                        <span
+                          className={`rounded-full px-2 py-0.5 text-[9px] font-mono uppercase tracking-widest ${
+                            p.status === "shipped" || p.status === "pilot"
+                              ? "border border-brand/40 bg-brand/10 text-brand"
+                              : "border border-border bg-muted/10 text-muted"
+                          }`}
+                        >
+                          {p.status === "shipped"
+                            ? "Shipped"
+                            : p.status === "pilot"
+                              ? "Pilot"
+                              : "Concept"}
+                        </span>
+                      </div>
                       <div className="mt-1 text-[11px] font-medium uppercase tracking-widest text-brand/90">
                         {p.role}
                       </div>
-                      <p className="mt-4 text-sm leading-relaxed text-muted">
-                        {p.description}
-                      </p>
+                      <p className="mt-4 text-sm leading-relaxed text-muted">{p.description}</p>
                       <div className="mt-6 flex flex-wrap gap-2">
                         {p.stack.map((s) => (
                           <span
@@ -129,9 +139,7 @@ function ProjectsPage() {
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <div>
-                          <div className="font-display text-lg text-ink">
-                            {c.name}
-                          </div>
+                          <div className="font-display text-lg text-ink">{c.name}</div>
                           <div className="mt-0.5 text-[10px] font-medium uppercase tracking-widest text-brand/70">
                             {c.tag}
                           </div>

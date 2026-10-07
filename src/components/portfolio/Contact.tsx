@@ -55,8 +55,8 @@ export function Contact() {
               <span className="text-brand">intelligent</span>.
             </h2>
             <p className="mt-6 max-w-md text-sm leading-relaxed text-muted">
-              Open to AI PM roles, contract product work, and 0 → 1
-              collaborations. Usually replies within 24h.
+              Open to AI PM roles, contract product work, and 0 → 1 collaborations. Usually replies
+              within 24h.
             </p>
             <div className="mt-8 space-y-3 text-sm">
               <a
@@ -131,9 +131,7 @@ export function Contact() {
               />
 
               <div className="flex items-center justify-between pt-2">
-                <span className="text-xs text-muted">
-                  {values.message.length}/1000
-                </span>
+                <span className="text-xs text-muted">{values.message.length}/1000</span>
                 <button
                   type="submit"
                   disabled={sending}
@@ -146,28 +144,17 @@ export function Contact() {
             </div>
           </form>
         </div>
-
       </div>
     </footer>
   );
 }
 
-function Field({
-  label,
-  input,
-  error,
-}: {
-  label: string;
-  input: React.ReactNode;
-  error?: string;
-}) {
+function Field({ label, input, error }: { label: string; input: React.ReactNode; error?: string }) {
   return (
     <label className="block">
       <div className="mb-1.5 flex items-center gap-2 text-xs font-medium text-ink">
         {label}
-        {error && (
-          <span className="text-[11px] text-[#ff5f57]">{error}</span>
-        )}
+        {error && <span className="text-[11px] text-[#ff5f57]">{error}</span>}
       </div>
       {input}
     </label>

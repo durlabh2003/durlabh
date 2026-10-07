@@ -21,10 +21,10 @@ export function Lab() {
             <Reveal key={l.name} delay={i * 0.05}>
               <div className="group h-full rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-ink">
                 <div className="flex items-start justify-between mb-6">
-                  <div className="size-8 rounded-lg border border-border grid place-items-center text-[10px] font-mono text-muted group-hover:border-brand group-hover:text-brand transition-colors">
+                  <div className="size-8 rounded-lg border border-border grid place-items-center text-xs font-mono text-muted group-hover:border-brand group-hover:text-brand transition-colors">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-muted">
+                  <span className="text-xs font-mono uppercase tracking-widest text-muted">
                     Experiment
                   </span>
                 </div>

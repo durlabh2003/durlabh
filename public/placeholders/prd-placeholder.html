@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRD Framework & Sample Specs — Durlabh Daryani</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #090a0f;
+        --card-bg: rgba(18, 22, 34, 0.75);
+        --card-border: rgba(255, 255, 255, 0.08);
+        --brand: #0284c7;
+        --text: #f1f5f9;
+        --muted: #94a3b8;
+        --accent-green: #10b981;
+        --code-bg: rgba(0, 0, 0, 0.4);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        line-height: 1.6;
+        padding: 2rem 1rem;
+        min-height: 100vh;
+        background-image:
+          radial-gradient(ellipse at 80% 10%, rgba(2, 132, 199, 0.12) 0%, transparent 50%),
+          radial-gradient(ellipse at 20% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      header {
+        margin-bottom: 2.5rem;
+      }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--brand);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        transition: opacity 0.2s;
+      }
+      .back-link:hover {
+        opacity: 0.8;
+      }
+      .badge {
+        display: inline-block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        background: rgba(2, 132, 199, 0.15);
+        color: #38bdf8;
+        border: 1px solid rgba(2, 132, 199, 0.3);
+        margin-bottom: 0.75rem;
+      }
+      h1 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.5rem;
+      }
+      .subtitle {
+        color: var(--muted);
+        font-size: 1.05rem;
+        max-width: 720px;
+      }
+      .callout {
+        background: rgba(2, 132, 199, 0.08);
+        border: 1px solid rgba(2, 132, 199, 0.25);
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+        color: #cbd5e1;
+      }
+      .callout strong {
+        color: #f1f5f9;
+      }
+      .section-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        letter-spacing: -0.01em;
+        color: #f8fafc;
+      }
+      .card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 1.75rem;
+        backdrop-filter: blur(12px);
+        margin-bottom: 1.5rem;
+      }
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .step-box {
+        background: rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 10px;
+        padding: 1rem;
+      }
+      .step-num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        color: var(--brand);
+        margin-bottom: 0.25rem;
+      }
+      .step-title {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+      }
+      .step-desc {
+        font-size: 0.825rem;
+        color: var(--muted);
+      }
+      .code-block {
+        background: var(--code-bg);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        padding: 1.25rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        color: #e2e8f0;
+        overflow-x: auto;
+        margin-top: 1rem;
+        line-height: 1.5;
+      }
+      footer {
+        border-top: 1px solid var(--card-border);
+        padding-top: 2rem;
+        margin-top: 2rem;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      .footer-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.65rem 1.25rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .btn-primary {
+        background: var(--brand);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        opacity: 0.9;
+      }
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+        border: 1px solid var(--card-border);
+      }
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="/" class="back-link">← Return to Portfolio</a>
+        <div>
+          <span class="badge">Product Management Artifact</span>
+          <h1>PRD Architecture & Sample Specs</h1>
+          <p class="subtitle">
+            How I write Product Requirements Documents: problem framing, JTBD, user stories, AI
+            workflow guardrails, and acceptance criteria.
+          </p>
+        </div>
+      </header>
+
+      <div class="callout">
+        <strong>Recruiter & Hiring Team Note:</strong> This template reflects the rigor I apply to
+        product initiatives. Full Notion workspaces, user research interview syntheses, and
+        technical RFCs are available for live review during technical discussions.
+      </div>
+
+      <div class="section-title">Standard PRD Anatomy</div>
+      <div class="steps-grid">
+        <div class="step-box">
+          <div class="step-num">01 // Problem & Context</div>
+          <div class="step-title">JTBD & Friction</div>
+          <div class="step-desc">
+            Why now? Who experiences this pain? Quantified friction drivers from interviews.
+          </div>
+        </div>
+        <div class="step-box">
+          <div class="step-num">02 // Goals & Non-Goals</div>
+          <div class="step-title">Strict Boundaries</div>
+          <div class="step-desc">
+            Clear primary metric, secondary guardrail metrics, and explicit Out of Scope boundaries.
+          </div>
+        </div>
+        <div class="step-box">
+          <div class="step-num">03 // AI Workflows</div>
+          <div class="step-title">Evals & Guardrails</div>
+          <div class="step-desc">
+            Prompt templates, fallback paths, deterministic schemas, and latency budgets.
+          </div>
+        </div>
+        <div class="step-box">
+          <div class="step-num">04 // Verification</div>
+          <div class="step-title">Acceptance Criteria</div>
+          <div class="step-desc">
+            Given-When-Then scenarios, QA sign-off checklists, and rollout gating.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">Sample PRD Excerpt: Kartify (Conversational Shopping AI)</div>
+      <div class="card">
+        <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem">
+          Kartify · Core Search & Comparison Matrix (v1.2 MVP)
+        </h3>
+        <p style="color: var(--muted); font-size: 0.875rem; margin-bottom: 1rem">
+          Owner: Durlabh Daryani | Status: Delivered / Pilot Usability Tested
+        </p>
+        <div class="code-block">
+          ### 1. Objective & JTBD - **JTBD:** When I am researching high-consideration electronics,
+          I want to compare options based on my specific budget and usage constraints, so I can buy
+          with confidence without opening 20 tabs. - **North Star Metric:** Task Completion Rate
+          (identifying a purchase-ready item within 8 conversational turns). ### 2. Functional Scope
+          - **Must Have:** * Intent parser extracting: Product category, Budget range, 2 core
+          attributes (e.g., battery life, weight). * Structured JSON schema output enforcing
+          side-by-side comparison tables. * Explicit reasoning summary (Why Option A wins over
+          Option B for this user). - **Out of Scope (v1 MVP):** * In-chat checkout / payment
+          processing (external affiliate redirection only). * Voice input and multimodal image
+          uploads. ### 3. AI Workflow & Guardrails - **Prompt Architecture:** 2-stage pipeline
+          (Stage 1: Intent & Attribute Extraction -> Stage 2: Synthesis & Matrix Generator). -
+          **Deterministic Guardrails:** Strict JSON schema validation; automatic retry on invalid
+          schema with temperature 0.1. - **Latency Target:** p90 response latency < 2.8s. ### 4.
+          Acceptance Criteria (QA Gating) - **AC-01:** Given a vague user query ("recommend a
+          laptop"), the system must prompt with at most 2 clarifying options before generating
+          recommendations. - **AC-02:** Comparison tables must cite at least 3 verifiable product
+          specifications per candidate item.
+        </div>
+      </div>
+
+      <footer>
+        <p>Prepared by Durlabh Daryani · AI Product Manager</p>
+        <div class="footer-actions">
+          <a href="/" class="btn btn-secondary">← Back to Portfolio</a>
+          <a href="mailto:durlabh.daryani@gmail.com" class="btn btn-primary"
+            >Request Full Notion Workspace</a
+          >
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

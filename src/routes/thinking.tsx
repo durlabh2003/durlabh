@@ -18,8 +18,7 @@ export const Route = createFileRoute("/thinking")({
       { property: "og:title", content: "Product Thinking — Durlabh Daryani" },
       {
         property: "og:description",
-        content:
-          "Essays on discovery, AI products, growth loops and decision-making.",
+        content: "Essays on discovery, AI products, growth loops and decision-making.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -30,14 +29,8 @@ export const Route = createFileRoute("/thinking")({
 
 function ThinkingIndexPage() {
   const articles = useSection("articles");
-  const sorted = useMemo(
-    () => [...articles].sort((a, b) => (a.date < b.date ? 1 : -1)),
-    []
-  );
-  const tags = useMemo(
-    () => ["All", ...Array.from(new Set(sorted.map((a) => a.tag)))],
-    [sorted]
-  );
+  const sorted = useMemo(() => [...articles].sort((a, b) => (a.date < b.date ? 1 : -1)), []);
+  const tags = useMemo(() => ["All", ...Array.from(new Set(sorted.map((a) => a.tag)))], [sorted]);
   const [active, setActive] = useState<string>("All");
   const filtered = active === "All" ? sorted : sorted.filter((a) => a.tag === active);
 
@@ -64,8 +57,8 @@ function ThinkingIndexPage() {
                   Essays on shipping AI-first products
                 </h1>
                 <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">
-                  Notes on discovery, prompt engineering, retention, analytics
-                  and decision-making — pulled from real products I've shipped.
+                  Notes on discovery, prompt engineering, retention, analytics and decision-making —
+                  pulled from real products I've shipped.
                 </p>
               </div>
             </Reveal>
@@ -110,9 +103,7 @@ function ThinkingIndexPage() {
                       <h2 className="font-display text-xl font-medium leading-snug text-ink group-hover:text-brand transition-colors md:text-2xl">
                         {a.title}
                       </h2>
-                      <p className="mt-3 text-sm leading-relaxed text-muted">
-                        {a.excerpt}
-                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-muted">{a.excerpt}</p>
                     </div>
                     <div className="mt-6 flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-muted">
                       <span>{a.readTime} read</span>

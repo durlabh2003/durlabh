@@ -28,28 +28,38 @@ type DockItem = {
 const dockItems: DockItem[] = [
   { id: "top", label: "Home", icon: Home, href: "/", sectionId: "hero" },
   { id: "work", label: "Work", icon: Briefcase, href: "/#work", sectionId: "work" },
-  { id: "case-studies", label: "Case Studies", icon: Folder, href: "/#case-studies", sectionId: "case-studies" },
+  {
+    id: "case-studies",
+    label: "Case Studies",
+    icon: Folder,
+    href: "/#case-studies",
+    sectionId: "case-studies",
+  },
   { id: "posts", label: "Posts", icon: FileText, href: "/#posts", sectionId: "posts" },
   { id: "thinking", label: "Thinking", icon: Lightbulb, href: "/#thinking", sectionId: "thinking" },
-  { id: "frameworks", label: "Frameworks", icon: Library, href: "/#frameworks", sectionId: "frameworks" },
+  {
+    id: "frameworks",
+    label: "Frameworks",
+    icon: Library,
+    href: "/#frameworks",
+    sectionId: "frameworks",
+  },
   { id: "lab", label: "Lab", icon: FlaskConical, href: "/#lab", sectionId: "lab" },
-  { id: "education", label: "Education", icon: GraduationCap, href: "/#education", sectionId: "education" },
+  {
+    id: "education",
+    label: "Education",
+    icon: GraduationCap,
+    href: "/#education",
+    sectionId: "education",
+  },
   { id: "contact", label: "Contact", icon: Mail, href: "/#contact", sectionId: "contact" },
   { id: "projects", label: "Projects", icon: LayoutGrid, href: "/projects" },
   { id: "thoughts", label: "Thoughts", icon: BookOpen, href: "/thoughts" },
 ];
 
-const sectionIds = dockItems
-  .map((i) => i.sectionId)
-  .filter((s): s is string => !!s);
+const sectionIds = dockItems.map((i) => i.sectionId).filter((s): s is string => !!s);
 
-function DockButton({
-  item,
-  active,
-}: {
-  item: DockItem;
-  active: boolean;
-}) {
+function DockButton({ item, active }: { item: DockItem; active: boolean }) {
   const content = (
     <div
       className={cn(

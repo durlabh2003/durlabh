@@ -52,8 +52,8 @@ function ThoughtsPage() {
                   My Thoughts
                 </h1>
                 <p className="mt-3 max-w-xl text-muted">
-                  Everything I've shared on LinkedIn about building AI-first
-                  products, discovery, and shipping fast. Newest first.
+                  Everything I've shared on LinkedIn about building AI-first products, discovery,
+                  and shipping fast. Newest first.
                 </p>
               </div>
               <div className="font-mono text-[11px] text-muted tabular-nums">

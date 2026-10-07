@@ -16,11 +16,15 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-6">
-            <Link to="/" className="font-display text-2xl font-medium tracking-tight text-ink hover:text-brand transition-colors">
+            <Link
+              to="/"
+              className="font-display text-2xl font-medium tracking-tight text-ink hover:text-brand transition-colors"
+            >
               {profile.name}
             </Link>
             <p className="mt-2 max-w-md text-sm text-muted">
-              {profile.role} based in {profile.location}. Building AI-first products through research, rapid experimentation, and data-driven decisions.
+              {profile.role} based in {profile.location}. Building AI-first products through
+              research, rapid experimentation, and data-driven decisions.
             </p>
             <a
               href={`mailto:${profile.email}`}
@@ -86,9 +90,7 @@ export function Footer() {
           <p className="text-xs text-muted">
             © {new Date().getFullYear()} {profile.name}. All rights reserved.
           </p>
-          <p className="text-xs text-muted">
-            {profile.coords} · built with React + TanStack
-          </p>
+          <p className="text-xs text-muted">{profile.coords} · built with React + TanStack</p>
         </div>
       </div>
     </footer>

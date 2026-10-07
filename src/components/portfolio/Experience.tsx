@@ -10,7 +10,7 @@ export function Experience() {
       <div className="mx-auto max-w-7xl px-6 py-24">
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-8">
-            <h2 className="font-display text-sm font-bold uppercase tracking-[0.2em] text-muted">
+            <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-brand">
               Career Trajectory
             </h2>
 
@@ -29,13 +29,11 @@ export function Experience() {
                         <h3 className="text-xl font-medium">{e.company}</h3>
                         <p className="text-sm text-muted">{e.role}</p>
                       </div>
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-muted">
+                      <span className="text-xs font-mono uppercase tracking-widest text-muted">
                         {e.period}
                       </span>
                     </div>
-                    <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink/80">
-                      {e.summary}
-                    </p>
+                    <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink/80">{e.summary}</p>
                     <ul className="mt-4 grid gap-1.5 max-w-xl">
                       {e.highlights.map((h) => (
                         <li key={h} className="text-xs text-muted flex gap-2">
@@ -49,7 +47,7 @@ export function Experience() {
               ))}
             </div>
 
-            <h2 className="mt-24 font-display text-sm font-bold uppercase tracking-[0.2em] text-muted">
+            <h2 className="mt-24 font-display text-xs font-semibold uppercase tracking-widest text-brand">
               Founder Track
             </h2>
             <div className="mt-12 grid gap-4 md:grid-cols-2">
@@ -61,18 +59,16 @@ export function Experience() {
                         <h3 className="text-lg font-medium">{s.name}</h3>
                         <div className="text-xs text-muted mt-0.5">{s.tag}</div>
                       </div>
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-brand shrink-0">
+                      <span className="text-xs font-mono uppercase tracking-wider text-brand shrink-0">
                         {s.role}
                       </span>
                     </div>
-                    <p className="mt-4 text-sm leading-relaxed text-ink/80">
-                      {s.summary}
-                    </p>
+                    <p className="mt-4 text-sm leading-relaxed text-ink/80">{s.summary}</p>
                     <div className="mt-4 flex flex-wrap gap-1.5">
                       {s.responsibilities.map((r) => (
                         <span
                           key={r}
-                          className="text-[10px] rounded border border-border px-2 py-0.5 text-muted"
+                          className="text-xs rounded border border-border px-2 py-0.5 text-muted"
                         >
                           {r}
                         </span>
@@ -85,21 +81,22 @@ export function Experience() {
           </div>
 
           <aside className="lg:col-span-4">
-            <div className="sticky top-24 rounded-2xl border border-border bg-muted/5 p-8">
-              <h3 className="font-display text-sm font-bold uppercase tracking-[0.2em]">
-                Skills
-              </h3>
-              <div className="mt-6 space-y-6">
+            {/* Heading placed outside sticky card to align Y-coordinate with Career Trajectory */}
+            <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-brand">
+              Skills
+            </h2>
+            <div className="mt-12 sticky top-24 rounded-2xl border border-border bg-muted/5 p-6 sm:p-8">
+              <div className="space-y-6">
                 {Object.entries(skills).map(([group, items]) => (
                   <div key={group}>
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted mb-2">
+                    <div className="text-xs font-mono uppercase tracking-widest text-muted mb-2">
                       {group}
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {items.map((s) => (
                         <span
                           key={s}
-                          className="text-[11px] rounded-md bg-surface border border-border px-2 py-0.5"
+                          className="text-xs rounded-md bg-surface border border-border px-2.5 py-1 text-ink/90"
                         >
                           {s}
                         </span>

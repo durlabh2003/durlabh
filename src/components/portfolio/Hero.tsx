@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useSection } from "@/lib/portfolio-content";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, Download, Mail, Zap } from "lucide-react";
 import { Magnetic } from "./Magnetic";
+import { RecruiterModal } from "./RecruiterModal";
 
 export function Hero() {
   const profile = useSection("profile");
+  const [recruiterOpen, setRecruiterOpen] = useState(false);
   return (
     <header
       id="top"
@@ -34,16 +37,25 @@ export function Hero() {
           </span>
         </motion.div>
 
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.02 }}
+          className="mb-4 text-sm font-medium uppercase tracking-[0.24em] text-muted"
+        >
+          {profile.name}
+        </motion.p>
+
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
           className="font-display font-semibold tracking-[-0.04em] leading-[0.92] text-balance text-6xl sm:text-7xl md:text-[8.5rem] lg:text-[10.5rem]"
         >
-          <span className="block bg-gradient-to-b from-ink via-ink/90 to-ink/40 bg-clip-text text-transparent">
+          <span className="block bg-gradient-to-b from-ink via-ink/95 to-ink/80 bg-clip-text text-transparent">
             AI Product
           </span>
-          <span className="block bg-gradient-to-br from-brand via-ink to-ink/50 bg-clip-text text-transparent">
+          <span className="block bg-gradient-to-br from-brand via-ink to-ink/85 bg-clip-text text-transparent">
             Manager.
           </span>
         </motion.h1>
@@ -55,6 +67,16 @@ export function Hero() {
           className="mx-auto mt-10 max-w-2xl text-lg leading-relaxed text-muted md:text-xl"
         >
           {profile.tagline}
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.26 }}
+          className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted/90"
+        >
+          Four product builds, six PM case studies, and clearly marked proof placeholders where
+          public evidence is still being prepared.
         </motion.p>
 
         <motion.div
@@ -71,6 +93,16 @@ export function Hero() {
               View work
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </a>
+          </Magnetic>
+          <Magnetic strength={0.25}>
+            <button
+              type="button"
+              onClick={() => setRecruiterOpen(true)}
+              className="inline-flex items-center gap-2 rounded-full border border-brand/50 bg-brand/10 px-6 py-3.5 text-sm font-semibold text-brand transition-colors hover:bg-brand hover:text-cta-ink"
+            >
+              <Zap className="size-4" />
+              60-Sec Recruiter TL;DR
+            </button>
           </Magnetic>
           <Magnetic strength={0.25}>
             <a
@@ -94,16 +126,10 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.3em] text-muted"
-        aria-hidden
-      >
-        Scroll
-      </motion.div>
+      <RecruiterModal
+        isOpen={recruiterOpen}
+        onClose={() => setRecruiterOpen(false)}
+      />
     </header>
   );
 }

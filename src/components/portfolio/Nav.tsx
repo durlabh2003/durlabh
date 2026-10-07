@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useSection } from "@/lib/portfolio-content";
-import { Apple, ChevronDown, Download } from "lucide-react";
+import { Apple, ChevronDown, Download, Menu, X } from "lucide-react";
 import { motion, useScroll, useSpring, useMotionValueEvent } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 
@@ -30,9 +30,8 @@ const categories: MenuCategory[] = [
   {
     label: "Portfolio",
     items: [
-      { label: "Work", to: "/", hash: "work" },
-      { label: "Case Studies", to: "/", hash: "case-studies" },
-      { label: "Projects", to: "/projects" },
+      { label: "Selected Work", to: "/", hash: "work" },
+      { label: "All Projects", to: "/projects" },
     ],
   },
   {
@@ -51,6 +50,8 @@ const categories: MenuCategory[] = [
     label: "About",
     items: [
       { label: "About me", to: "/", hash: "about" },
+      { label: "How I Operate", to: "/", hash: "operate" },
+      { label: "Testimonials", to: "/", hash: "testimonials" },
       { label: "Contact", to: "/", hash: "contact" },
       {
         label: "Download CV",
@@ -77,6 +78,7 @@ export function Nav() {
     mass: 0.2,
   });
   const [hidden, setHidden] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const scrollStopTimer = useRef<number | null>(null);
 
   const clearScrollStopTimer = () => {
@@ -98,11 +100,13 @@ export function Nav() {
       setHidden(false);
     } else if (latest > previous && latest > 80) {
       setHidden(true);
+      setMobileOpen(false);
     }
 
     scrollStopTimer.current = window.setTimeout(() => {
       if (latest > 80) {
         setHidden(true);
+        setMobileOpen(false);
       }
     }, 1400);
   });
@@ -115,15 +119,13 @@ export function Nav() {
         className="fixed top-5 left-1/2 z-50 -translate-x-1/2"
       >
         <div className="flex items-center gap-2 rounded-full border border-border bg-elevated/70 px-3 py-2 shadow-2xl backdrop-blur-xl">
-
           <Link
             to="/"
+            onClick={() => setMobileOpen(false)}
             className="flex items-center gap-2 rounded-full px-3 py-1.5 text-ink transition-colors hover:bg-white/5"
           >
             <Apple className="size-4" />
-            <span className="font-semibold text-[13px]">
-              {profile.name.split(" ")[0]}
-            </span>
+            <span className="font-semibold text-[13px]">{profile.name.split(" ")[0]}</span>
           </Link>
 
           <div className="hidden items-center gap-0.5 text-[13px] text-ink/80 md:flex">
@@ -138,11 +140,7 @@ export function Nav() {
                     {cat.label}
                     <ChevronDown className="size-3 transition-transform group-data-[state=open]:rotate-180" />
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    align="start"
-                    sideOffset={8}
-                    className={menuContentClass}
-                  >
+                  <DropdownMenuContent align="start" sideOffset={8} className={menuContentClass}>
                     {cat.items.map((item, idx) => (
                       <NavDropdownItem
                         key={item.label}
@@ -156,13 +154,42 @@ export function Nav() {
                     ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
-              )
+              ),
             )}
           </div>
 
+          <button
+            type="button"
+            onClick={() => setMobileOpen((open) => !open)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            className="inline-flex size-8 items-center justify-center rounded-full text-ink transition-colors hover:bg-white/5 hover:text-brand md:hidden"
+          >
+            {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+          </button>
         </div>
-      </motion.nav>
 
+        {mobileOpen && (
+          <div className="mt-2 w-[min(22rem,calc(100vw-2rem))] rounded-2xl border border-border bg-elevated/95 p-3 text-ink shadow-2xl backdrop-blur-xl md:hidden">
+            {categories.map((cat) => (
+              <div key={cat.label} className="py-1">
+                <div className="px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted">
+                  {cat.label}
+                </div>
+                <div className="grid gap-1">
+                  {cat.items.map((item) => (
+                    <MobileNavItem
+                      key={item.label}
+                      item={item}
+                      onNavigate={() => setMobileOpen(false)}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </motion.nav>
 
       <motion.div
         aria-hidden
@@ -173,13 +200,28 @@ export function Nav() {
   );
 }
 
-function SingleNavLink({
-  item,
-  children,
-}: {
-  item: MenuItem;
-  children: React.ReactNode;
-}) {
+function MobileNavItem({ item, onNavigate }: { item: MenuItem; onNavigate: () => void }) {
+  const className =
+    "flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-ink transition-colors hover:bg-brand/10 hover:text-brand";
+
+  if (item.href) {
+    return (
+      <a href={item.href} download={item.download} onClick={onNavigate} className={className}>
+        {item.icon}
+        {item.label}
+      </a>
+    );
+  }
+
+  return (
+    <Link to={item.to!} hash={item.hash} onClick={onNavigate} className={className}>
+      {item.icon}
+      {item.label}
+    </Link>
+  );
+}
+
+function SingleNavLink({ item, children }: { item: MenuItem; children: React.ReactNode }) {
   if (item.href) {
     return (
       <a
@@ -202,13 +244,7 @@ function SingleNavLink({
   );
 }
 
-function NavDropdownItem({
-  item,
-  withSeparator,
-}: {
-  item: MenuItem;
-  withSeparator?: boolean;
-}) {
+function NavDropdownItem({ item, withSeparator }: { item: MenuItem; withSeparator?: boolean }) {
   return (
     <>
       {withSeparator && <DropdownMenuSeparator className="my-1 h-px bg-border" />}
